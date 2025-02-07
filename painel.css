@@ -1,0 +1,103 @@
+/* Resetando margens e padding para uma base limpa */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fonte global e fundo */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #2c1d59; /* Roxo escuro */
+    color: #fff;
+    overflow-x: hidden;
+    height: 100vh;
+}
+
+/* Centralização e layout da página */
+.maintenance {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    padding: 20px;
+}
+
+/* Título sem animação */
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #d8a7f3; /* Roxo claro */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+/* Texto de status */
+p {
+    font-size: 1.5rem;
+    color: #ccc;
+    margin-top: 10px;
+}
+
+/* Barra de progresso */
+.progress-bar {
+    width: 80%;
+    background-color: #6a1b9a; /* Roxo mais escuro */
+    height: 15px;
+    border-radius: 10px;
+    margin: 20px 0;
+    position: relative;
+}
+
+.progress {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(45deg, #9c27b0, #ba68c8); /* Gradiente de roxo */
+    border-radius: 10px;
+}
+
+/* Informações de progresso */
+.maintenance-info {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    color: #d8a7f3;
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+/* Texto do cronômetro */
+.countdown {
+    margin-top: 40px;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+.countdown-title {
+    font-size: 1.5rem;
+    color: #ba68c8;
+    margin-bottom: 10px;
+}
+
+/* Estilizando o cronômetro */
+.countdown-timer {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #f8bbd0; /* Roxo claro quase rosado */
+    letter-spacing: 2px;
+}
+
+/* Rodapé */
+footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: #ccc;
+    font-size: 0.8rem; /* Reduzido o tamanho da fonte */
+}

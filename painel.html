@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Site em Manutenção</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="painel.css">
+</head>
+<body>
+
+    <!-- Seção de Manutenção -->
+    <div class="maintenance">
+        <h1>Em Manutenção</h1>
+        <div class="progress-bar">
+            <div id="progress" class="progress"></div>
+        </div>
+        <!-- Informações sobre o progresso -->
+        <div class="maintenance-info">
+            <p class="site-status">Site em Manutenção</p>
+            <p id="progress-status" class="progress-status">70% Atualizado</p>
+        </div>
+
+        <!-- Cronômetro de Manutenção -->
+        <div class="countdown">
+            <p class="countdown-title">Tempo Restante:</p>
+            <div id="countdown-timer" class="countdown-timer">00:00:00</div>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; Todos os direitos reservados 2023 - 2025 - Barbearia RD</p>
+    </footer>
+
+    <!-- JavaScript para o cronômetro e sincronização com a barra de progresso -->
+    <script>
+        let maintenanceEndDate = localStorage.getItem('maintenanceEndDate');
+
+        if (!maintenanceEndDate) {
+            maintenanceEndDate = new Date(new Date().getTime() + 3 * 24 * 60 * 60 * 1000); // 3 dias
+            localStorage.setItem('maintenanceEndDate', maintenanceEndDate);
+        } else {
+            maintenanceEndDate = new Date(maintenanceEndDate);
+        }
+
+        const totalDuration = 3 * 24 * 60 * 60 * 1000;
+
+        function updateCountdown() {
+            const now = new Date();
+            const remainingTime = maintenanceEndDate - now;
+
+            if (remainingTime <= 0) {
+                document.getElementById("countdown-timer").innerHTML = "Manutenção Concluída!";
+                clearInterval(countdownInterval);
+                document.getElementById("progress-status").innerHTML = "100% Atualizado";
+                document.getElementById("progress").style.width = "100%";
+                return;
+            }
+
+            const hours = Math.floor((remainingTime / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((remainingTime / (1000 * 60)) % 60);
+            const seconds = Math.floor((remainingTime / 1000) % 60);
+
+            document.getElementById("countdown-timer").innerHTML =
+                String(hours).padStart(2, "0") + ":" +
+                String(minutes).padStart(2, "0") + ":" +
+                String(seconds).padStart(2, "0");
+
+            const percentage = (remainingTime / totalDuration) * 70;
+            document.getElementById("progress").style.width = `${percentage}%`;
+            document.getElementById("progress-status").innerHTML = `${Math.round(percentage)}% Atualizado`;
+        }
+
+        const countdownInterval = setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
